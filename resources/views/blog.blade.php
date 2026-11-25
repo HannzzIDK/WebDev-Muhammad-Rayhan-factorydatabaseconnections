@@ -1,13 +1,17 @@
 @extends('layouts.app')
+
 @section('content')
-    <article class="card">
-    <h2>Salah Satu Album Musik Favorit Saya</h2>
-    <p class="text-slate-600">Album kesembilan Pink Floyd yang dirilis tahun 1975. Sampulnya menampilkan dua sosok berjabat tangan, salah satunya terbakar. Sebuah gambaran tentang orang yang hadir tapi sebenarnya tidak benar-benar ada.</p>
-</article>
-
-
-<h2 class="flex justify-center"> Cover Albumnya</h2>
- <img class="flex justify-center items-center h-screen" src="img/image.png"></img>
-   
+    @forelse ($blogs as $blogs)
+        <article class="card max-w-2xl mx-auto">
+            {{-- Tambahkan utility class 'flex' di awal agar layout flexbox aktif --}}
+            <div class="flex flex-col-reverse sm:flex-row sm:items-center gap-6">
+                <div>
+                    <h2>{{ $blogs -> title }}</h2>
+                    <p>{{ $blogs -> content }}</p>
+                </div>
+                <img src="{{ $blogs -> thumbnail }}" alt="">
+            </div>
+        </article>
+        @empty
+    @endforelse
 @endsection
-  
